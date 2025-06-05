@@ -1,7 +1,6 @@
 using UnityEngine;
 
-
-public class EntityState
+public abstract class EntityState
 {
     protected StateMachine stateMachine;
     protected string stateName;

@@ -4,13 +4,13 @@ public class Player : MonoBehaviour
 {
     public StateMachine stateMachine {  get; private set; }
 
-    private EntityState idleState;
+    private Player_IdleState idleState;
 
     private void Awake()
     {
         stateMachine = new StateMachine();
 
-        idleState = new EntityState(stateMachine, "idleState");
+        idleState = new Player_IdleState(stateMachine, "idle");
     }
 
     private void Start()
