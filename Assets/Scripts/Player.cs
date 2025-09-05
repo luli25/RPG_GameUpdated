@@ -10,7 +10,8 @@ public class Player : MonoBehaviour
     public Player_MoveState moveState { get; private set; }
     public Vector2 moveInput { get; private set; }
 
-    private PlayerInputSet playerInput;
+    public PlayerInputSet playerInput { get; private set; }
+
     private StateMachine stateMachine;
 
     [Header("Movement details")]
