@@ -8,6 +8,8 @@ public class Player : MonoBehaviour
 
     public Player_IdleState idleState { get; private set; }
     public Player_MoveState moveState { get; private set; }
+    public Player_JumpState jumpState { get; private set; }
+    public Player_FallState fallState { get; private set; }
     public Vector2 moveInput { get; private set; }
 
     public PlayerInputSet playerInput { get; private set; }
@@ -16,6 +18,7 @@ public class Player : MonoBehaviour
 
     [Header("Movement details")]
     public float moveSpeed;
+    public float jumpForce = 5f;
 
     private bool facingRight = true;
 
@@ -30,6 +33,8 @@ public class Player : MonoBehaviour
 
         idleState = new Player_IdleState(this, stateMachine, "isIdle");
         moveState = new Player_MoveState(this, stateMachine, "isRunning");
+        jumpState = new Player_JumpState(this, stateMachine, "jumpFall");
+        fallState = new Player_FallState(this, stateMachine, "jumpFall");
     }
 
     public void SetVelocity(float xVelocity, float yVelocity)

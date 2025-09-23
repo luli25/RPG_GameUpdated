@@ -12,7 +12,7 @@ public class Player_GroundedState : EntityState
 
         if(input.Player.Jump.WasPressedThisFrame())
         {
-            Debug.Log("Jump!");
+            stateMachine.ChangeState(player.jumpState);
         }
     }
 }
