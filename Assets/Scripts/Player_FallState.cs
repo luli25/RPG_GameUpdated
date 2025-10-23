@@ -10,7 +10,10 @@ public class Player_FallState : EntityState
     public override void Update()
     {
         base.Update();
-        
-        // If player detects ground, if yes... go to IdleState
+
+        if (player.groundDetected)
+        {
+            stateMachine.ChangeState(player.idleState);
+        }
     }
 }

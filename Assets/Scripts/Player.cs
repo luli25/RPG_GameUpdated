@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 
 public class Player : MonoBehaviour
@@ -21,6 +22,15 @@ public class Player : MonoBehaviour
     public float jumpForce = 5f;
 
     private bool facingRight = true;
+
+    [Header("Collision detection")] 
+    [SerializeField]
+    private float groundCheckDistance;
+    
+    [SerializeField]
+    private LayerMask whatIsGround;
+
+    public bool groundDetected;
 
 
     private void Awake()
@@ -63,6 +73,7 @@ public class Player : MonoBehaviour
 
     private void Update()
     {
+        HandleGroundDetection();
         stateMachine.currentState.Update();
     }
 
@@ -82,5 +93,17 @@ public class Player : MonoBehaviour
     {
         transform.Rotate(0, 180, 0);
         facingRight = !facingRight;
+    }
+
+    private void HandleGroundDetection()
+    {
+        groundDetected = Physics2D.Raycast(transform.position, Vector2.down
+            , groundCheckDistance, whatIsGround);
+    }
+
+    private void OnDrawGizmos()
+    {
+        Gizmos.color = Color.red;
+        Gizmos.DrawLine(transform.position, transform.position + new Vector3(0, - groundCheckDistance));
     }
 }
