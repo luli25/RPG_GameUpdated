@@ -20,6 +20,9 @@ public class Player : MonoBehaviour
     [Header("Movement details")]
     public float moveSpeed;
     public float jumpForce = 5f;
+    
+    [Range(0, 1)]
+    public float inAirMoveSpeed = 0.7f; // Should be from 0 to 1
 
     private bool facingRight = true;
 
@@ -30,7 +33,7 @@ public class Player : MonoBehaviour
     [SerializeField]
     private LayerMask whatIsGround;
 
-    public bool groundDetected;
+    public bool groundDetected { get; private set; }
 
 
     private void Awake()
